@@ -10,18 +10,18 @@ const RecipeList = () => {
   const [ name, setName ] = useState('');
   const [ loading, setLoading ] = useState(false);
   const [ recipes, setRecipes ] = useState([] as any[]);
-  const mealService = new RecipeService();
+  const recipeService = new RecipeService();
 
   useEffect(() => {
     setLoading(true);
-    mealService.getRandomRecipes().then(recipes => {
+    recipeService.getRandomRecipes().then(recipes => {
       setLoading(false);
       setRecipes(recipes.recipes);
     });
   }, []);
 
   const fetchRecipes = () => {
-    mealService.getRecipes(name).then(recipes => {
+    recipeService.getRecipes(name).then(recipes => {
       setLoading(false);
       setRecipes(recipes.results);
     });

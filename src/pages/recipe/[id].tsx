@@ -1,11 +1,16 @@
 'use client';
+import LoadingSpinner from '@/components/common/loading-spinner/loading-spinner.component';
+import RecipeDetails from '@/components/recipe-details/recipe-details.component';
 import { useRouter } from 'next/router';
 
 export default function RecipePage() {
   const { query } = useRouter();
-  console.log(query.id);
+
+  if (!query.id) {
+    return <LoadingSpinner />
+  }
 
   return (
-    <div>Recipe {query.id}</div>
+    <RecipeDetails id={query.id} />
   )
 }

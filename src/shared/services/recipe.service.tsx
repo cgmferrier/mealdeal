@@ -11,7 +11,7 @@ export class RecipeService {
     return fetch(`${this.baseUrl}/complexSearch?apiKey=${this.apiKey}&query=${name}&number=${amount}`).then(response => response.json());
   }
 
-  getRecipe(id: number): Promise<any> {
-    return fetch(`${this.baseUrl}/${id}/information`).then(response => response.json());
+  getRecipe(id: number): Promise<{}> {
+    return fetch(`${this.baseUrl}/${id}/information?apiKey=${this.apiKey}`).then(response => response.json());
   }
 }
