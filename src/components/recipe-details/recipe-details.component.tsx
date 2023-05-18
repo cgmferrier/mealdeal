@@ -1,18 +1,21 @@
 import LoadingSpinner from '@/components/common/loading-spinner/loading-spinner.component';
+import RecipeSummary from '@/components/recipe-summary/recipe-summary.component';
+import { Summary } from '@/shared/interfaces/summary.interface';
 import { RecipeService } from '@/shared/services/recipe.service';
 import '@/styles/globals.scss';
-import { Interweave } from 'interweave';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import './recipe-details.component.scss';
 
 const RecipeDetails = ({ id }) => {
   const [ details, setDetails ] = useState();
-  const [ summary, setSummary ] = useState();
+  const [ summary, setSummary ] = useState<Summary>();
   const recipeService = new RecipeService();
 
   useEffect(() => {
-    recipeService.getRecipe(id).then((result: any) => {
-      setDetails(result);
-      setSummary(result.summary);
+    recipeService.getRecipe(id).then(({ healthScore, readyInMinutes, servings, ...result}) => {
+      setDetails(result as any);
+      setSummary({ healthScore, readyInMinutes, servings });
     })
   }, []);
 
@@ -22,9 +25,12 @@ const RecipeDetails = ({ id }) => {
 
   return (
     <div>
-      <h1>{details.title}</h1>
-      <img alt={details.title} src={details.image} />
-      <Interweave content={summary}/>
+      <Link href="/" >Back</Link>
+      <section className="recipe-details">
+        <h2>{details.title}</h2>
+        <img alt={details.title} src={details.image} />
+        <RecipeSummary { ...summary } />
+      </section>
     </div>
   )
 }
