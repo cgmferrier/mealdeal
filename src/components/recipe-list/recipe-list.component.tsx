@@ -1,5 +1,6 @@
 'use client';
 
+import CustomLink from '@/components/common/custom-link/custom-link.component';
 import LoadingSpinner from '@/components/common/loading-spinner/loading-spinner.component';
 import { RecipeService } from '@/shared/services/recipe.service';
 import { FormEvent, useEffect, useState } from 'react';
@@ -48,11 +49,11 @@ const RecipeList = () => {
       </form>
       <ul className="recipe-list">{recipes && recipes.map(({ id, image, title }) => {
         return (
-          <li className="recipe" key={id} onClick={goToDetails}>
-            {/*<Link href={`/recipe/${id}`}>*/}
+          <li className="recipe" key={id}>
+            <CustomLink href={`/recipe/${id}`}>
               <div className="recipe-title">{title}</div>
               <img className="recipe-img" alt={title} src={image}/>
-            {/*</Link>*/}
+            </CustomLink>
           </li>
         )
       })}
