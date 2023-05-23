@@ -1,5 +1,6 @@
 import LoadingSpinner from '@/components/common/loading-spinner/loading-spinner.component';
 import RecipeSummary from '@/components/recipe-summary/recipe-summary.component';
+import { Recipe } from '@/shared/interfaces/recipe.interface';
 import { Summary } from '@/shared/interfaces/summary.interface';
 import { RecipeService } from '@/shared/services/recipe.service';
 import '@/styles/globals.scss';
@@ -7,8 +8,8 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import './recipe-details.component.scss';
 
-const RecipeDetails = ({ id }) => {
-  const [ details, setDetails ] = useState();
+const RecipeDetails = ({ id }: any) => {
+  const [ details, setDetails ] = useState<Recipe>();
   const [ summary, setSummary ] = useState<Summary>();
   const recipeService = new RecipeService();
 
@@ -19,7 +20,7 @@ const RecipeDetails = ({ id }) => {
     })
   }, []);
 
-  if (!details) {
+  if (!details || !summary) {
     return <LoadingSpinner />
   }
 

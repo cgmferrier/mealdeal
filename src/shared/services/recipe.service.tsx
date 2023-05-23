@@ -1,3 +1,5 @@
+import { Recipe } from '@/shared/interfaces/recipe.interface';
+
 export class RecipeService {
   apiKey = '11d12885183641b6849b083c5277eb8b';
   baseUrl = 'https://api.spoonacular.com/recipes';
@@ -11,7 +13,7 @@ export class RecipeService {
     return fetch(`${this.baseUrl}/complexSearch?apiKey=${this.apiKey}&query=${name}&number=${amount}`).then(response => response.json());
   }
 
-  getRecipe(id: number): Promise<{}> {
+  getRecipe(id: number): Promise<Recipe> {
     return fetch(`${this.baseUrl}/${id}/information?apiKey=${this.apiKey}`).then(response => response.json());
   }
 }

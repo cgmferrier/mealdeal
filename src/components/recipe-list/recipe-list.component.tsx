@@ -3,7 +3,7 @@
 import LoadingSpinner from '@/components/common/loading-spinner/loading-spinner.component';
 import { RecipeService } from '@/shared/services/recipe.service';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import './recipe-list.component.scss';
 
 const RecipeList = () => {
@@ -27,7 +27,7 @@ const RecipeList = () => {
     });
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     fetchRecipes();
