@@ -27,10 +27,6 @@ const RecipeList = () => {
     });
   }
 
-  const goToDetails = () => {
-    console.log('hi')
-  }
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
